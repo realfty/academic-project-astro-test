@@ -2,31 +2,31 @@
 layout: ../layouts/Layout.astro
 title: Module control of network analysis in psychopathology
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
-favicon: favicon.svg
-thumbnail: screenshot.png
+favicon: /favicon.svg
+thumbnail: /screenshot.png
 ---
 
-import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import moduleControlOverview from '../assets/moduleControlOverview.jpg';
 import mcnAnalysis from '../assets/fig3.jpg';
 import stabilityAnalysis from '../assets/fig4.jpg';
 
+import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import Video from "../components/Video.astro";
-import HighlightedSection from "../components/HighlightedSection.astro";
-import SmallCaps from "../components/SmallCaps.astro";
-import Figure from "../components/Figure.astro";
-import Image from "../components/Image.astro";
 import TwoColumns from "../components/TwoColumns.astro";
+import Video from "../components/Video.astro";
 import YouTubeVideo from "../components/YouTubeVideo.astro";
+import PDF from "../components/PDF.astro";
+import Figure from "../components/Figure.astro";
 import LaTeX from "../components/LaTeX.astro";
-
-import outside from "../assets/outside.mp4";
-import transformer from "../assets/transformer.webp";
+import SmallCaps from "../components/SmallCaps.astro";
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
 export const components = {pre: CodeBlock}
+
+import outside from "../assets/outside.mp4";
+import transformer from "../assets/transformer.webp";
 
 <Header
   title={frontmatter.title}
@@ -42,7 +42,7 @@ export const components = {pre: CodeBlock}
       url: "https://scholar.google.com/citations?user=qEIz2soAAAAJ&hl=en",
     notes: ["7,*"] },
   ]}
-  conference="iScience 27, 110302 July 19, 2024 © 2024 The Author(s). Published by Elsevier Inc."   
+  conference="iScience"   
   notes={[
     { symbol: "1", text: "Early Intervention Unit, Department of Psychiatry, The Affiliated Brain Hospital of Nanjing Medical University, Nanjing, Jiangsu 210024, China" },
     { symbol: "2", text: "Northeastern University, Shenyang, Liaoning 110169, China" },
@@ -67,22 +67,18 @@ export const components = {pre: CodeBlock}
 />
 
 
-<HighlightedSection>
-
 ## Abstract
 
-The **network approach** to characterizing psychopathology departs from traditional latent categorical and dimensional approaches. Causal interplay among symptoms contributed to dynamic psychopathology system. Therefore, analyzing the symptom clusters is critical for understanding mental disorders. Furthermore, despite extensive research studying the topological features of symptom networks, the control relationships between symptoms remain largely unclear. Here, we present a novel systematizing concept, _module control_, to analyze the control principle of the symptom network at a module level. We introduce **Module Control Network (MCN)** to identify key modules that regulate the network's behavior. By applying our approach to a multivariate psychological dataset, we discover that *non-emotional modules*, such as sleep-related and stress-related modules, are the primary controlling modules in the symptom network. Our ﬁndings indicate that _module control_ can expose central symptom cluster governing psychopathology network, offering novel insights into the underlying mechanisms of mental disorders and individualized approach to psychological interventions.
-
-</HighlightedSection>
+The **network approach** to characterizing psychopathology departs from traditional latent categorical and dimensional approaches. Causal interplay among symptoms contributed to dynamic psychopathology system. Therefore, analyzing the symptom clusters is critical for understanding mental disorders. Furthermore, despite extensive research studying the topological features of symptom networks, the control relationships between symptoms remain largely unclear. Here, we present a novel systematizing concept, <SmallCaps>module control</SmallCaps>, to analyze the control principle of the symptom network at a module level. We introduce **Module Control Network (MCN)** to identify key modules that regulate the network's behavior. By applying our approach to a multivariate psychological dataset, we discover that *non-emotional modules*, such as sleep-related and stress-related modules, are the primary controlling modules in the symptom network. Our ﬁndings indicate that <SmallCaps>module control</SmallCaps> can expose central symptom cluster governing psychopathology network, offering novel insights into the underlying mechanisms of mental disorders and individualized approach to psychological interventions.
 
 ## Graphical abstract
 
 This figure illustrates the main concepts and findings of our research on module control in network systems for psychopathology.
 
 <Figure
-    caption="Overview of module control network analysis in psychopathology"
-  >
-    <Image source={moduleControlOverview} altText="Diagram showing module control network concepts, non-emotional modules as main control modules, and stability analysis" />
+  caption="Overview of module control network analysis in psychopathology"
+>
+  <Image src={moduleControlOverview} alt="Diagram showing module control network concepts, non-emotional modules as main control modules, and stability analysis" />
 </Figure>
 
 The figure is divided into three main sections:
@@ -103,21 +99,18 @@ Our analysis of the Module Control Network (MCN) revealed several key findings:
 
 1. **Non-emotional modules as primary controllers**: The non-emotional modules, particularly the sleep-related module (SRM) and stress-related modules (PSM, NSM), exhibited the strongest control powers over other modules in the symptom network.
 
-2. **Module control strength**: The average module control strength(AMCS) for each module were:
-
-| Module | Description | AMCS | Rank |
-| :--- | :--- | :---: | :---: |
-| SRM | Sleep-Related Module | 0.410 | 1 |
-| PSM | Positive Stress Module | 0.283 | 2 |
-| NSM | Negative Stress Module | 0.281 | 3 |
-| DRM | Depression-Related Module | 0.222 | 4 |
-| ARM | Anxiety-Related Module | 0.199 | 5 |
-| SUM | Suicide-Related Module | 0.106 | 6 |
+2. **Module control powers**: The average module control powers for each module were:
+   - SRM (Sleep-Related Module): 0.410
+   - PSM (Positive Stress Module): 0.283
+   - NSM (Negative Stress Module): 0.281
+   - DRM (Depression-Related Module): 0.222
+   - ARM (Anxiety-Related Module): 0.199
+   - SUM (Suicide-Related Module): 0.106
 
 <Figure
   caption="Figure 3: Module Control Network (MCN) Analysis Results"
 >
-  <Image source={mcnAnalysis} altText="Module Control Network analysis results showing connections and control powers between modules" />
+  <Image src={mcnAnalysis} alt="Module Control Network analysis results showing connections and control powers between modules" />
 </Figure>
 
 3. **Hierarchical structure**: The MCN analysis uncovered a hierarchical structure in the symptom network, with non-emotional modules at the top of the hierarchy, followed by emotional modules.
@@ -142,7 +135,7 @@ To verify the validity of our results, we conducted a comprehensive stability an
 <Figure
   caption="Figure 4: Stability Analysis Results"
 >
-  <Image source={stabilityAnalysis} altText="Stability analysis results showing the distribution of module control powers across 1,000 samples" />
+  <Image src={stabilityAnalysis} alt="Stability analysis results showing the distribution of module control powers across 1,000 samples" />
 </Figure>
 
 3. **Statistical significance**: The differences in module control powers between non-emotional and emotional modules were statistically significant (p < 0.001).
@@ -171,79 +164,41 @@ Our study introduces a novel module control approach to understanding psychopath
 
 In conclusion, our module control network approach offers a new perspective on psychopathology, potentially impacting both theoretical models and clinical practices in mental health.
 
-## Methods
+## Conclusion
 
-### Network Estimation
+[总结主要发现和未来研究方向]
 
-We employed the Graphical LASSO method to construct the symptom network. The mathematical formulation is:
+## References
 
-<LaTeX formula="\hat{K} = \argmin_K (trSK - \log\det K + \alpha\|K\|_1)" />
+1. [添加关键参考文献]
+2. [...]
 
-where:
-- K is the sparse inverse covariance matrix
-- S is the sample covariance matrix
-- <LaTeX inline formula="\|K\|_1" /> is the sum of absolute values of off-diagonal coefficients
-- α is the sparsity parameter (set to 0.05)
+## Two columns
 
-### Module Detection
+Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
 
-The Louvain algorithm was used for module detection, based on modularity optimization:
+<TwoColumns>
+  <Figure slot="left" caption="Take a look at this YouTube video.">
+    <YouTubeVideo videoId="wjZofJX0v4M" />
+  </Figure>
+  <Figure slot="right" caption="Now look at this Gaussian Splat, rendered with a React component.">
+    <Splat client:idle />
+  </Figure>
+</TwoColumns>
 
-<LaTeX formula="Q = \frac{1}{2m} \sum_{ij} \left[A_{ij} - \frac{k_i k_j}{2m}\right] \delta(c_i,c_j)" />
+## LaTeX
 
-where:
-- <LaTeX inline formula="A_{ij}" /> is the edge weight between nodes i and j
-- <LaTeX inline formula="k_i = \sum_j A_{ij}" /> is the sum of weights of edges attached to node i
-- <LaTeX inline formula="c_i" /> is the community of node i
-- <LaTeX inline formula="δ(c_i,c_j)" /> equals 1 if <LaTeX inline formula="c_i = c_j" /> and 0 otherwise
-- m is the total network weight
+You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: <LaTeX inline formula="a^2 + b^2 = c^2" />. Or, you can write them as a block:
 
-The modularity gain ∆Q is calculated as:
+<LaTeX formula="\int_a^b f(x) dx" />
 
-<LaTeX formula="\Delta Q = \left[\frac{\sum in + k_{i,in}}{2m} - \left(\frac{\sum tot + k_i}{2m}\right)^2\right] - \left[\frac{\sum in}{2m} - \left(\frac{\sum tot}{2m}\right)^2 - \left(\frac{k_i}{2m}\right)^2\right]" />
+## BibTeX citation
 
-### Module Control Network
-
-For a network with M modules, we define the Module Control Strength (MCS) between modules:
-
-<LaTeX formula="\text{MCS}_{m,m'}^{\text{MDS}} = \frac{|AC_m \cap V_{m'}|}{|V_{m'}|}" />
-
-The Average Module Control Strength (AMCS) across all MDSets is:
-
-<LaTeX formula="\text{AMCS}_{m,m'} = \frac{\sum_{\text{MDS} \in D} \text{MCS}_{m,m'}^{\text{MDS}}}{|D|} \in [0,1]" />
-
-where:
-- <LaTeX inline formula="AC_m" /> is the control area of module m
-- <LaTeX inline formula="V_{m'}" /> is the node set of module m'
-- D is the set of all MDSets
-
-### Control Frequency
-
-The control frequency of a node n is defined as:
-
-<LaTeX formula="\text{CF}_n = \frac{1}{|D|} \sum_{i=1}^{|D|} \sum_{j=1}^{|D_i|} [n \in D_i] \cdot [n = D_{i,j}]" />
-
-The Average Control Frequency (ACF) for module i is:
-
-<LaTeX formula="\text{ACF}_i = \frac{\sum_{n \in V_{C_i}} \text{CF}_n}{|V_{C_i}|}" />
-
-### Statistical Analysis
-
-Network centrality measures include:
-
-1. **Degree Centrality**:
-<LaTeX formula="\text{DC}_i = \frac{\text{degree}_i}{n-1}" />
-
-2. **Betweenness Centrality**:
-<LaTeX formula="\text{BC}_i = \sum_{s \neq i \neq t \in n} \frac{p_{s,t}(i)}{p_{s,t}}" />
-
-3. **Closeness Centrality**:
-<LaTeX formula="\text{CC}_i = \frac{r-1}{n-1} \cdot \frac{r-1}{\sum d_{i,j}}" />
-
-4. **Clustering Coefficient**:
-<LaTeX formula="\text{CL}_i = \frac{2T_i}{d_i(d_i-1)}" />
-
-All metrics were standardized using z-score:
-
-<LaTeX formula="\text{z-score} = \frac{x - \bar{X}}{\text{SD}}" />
-
+```
+@misc{roman2024academic,
+  author = "{Roman Hauksson}",
+  title = "Academic Project Page Template",
+  year = "2024",
+  howpublished = "\url{https://research-template.roman.technology}",
+}
+```
