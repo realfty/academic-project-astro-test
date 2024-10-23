@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title, description, favicon, thumbnail } = Astro.props.frontmatter;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -19,12 +20,16 @@ const { title, description, favicon, thumbnail } = Astro.props.frontmatter;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <link rel="icon" type="image/svg+xml" href={baseUrl + "/" + favicon} />
 
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
-    {thumbnail && <meta property="og:image" content={thumbnail} />}
+    {
+      thumbnail && (
+        <meta property="og:image" content={baseUrl + "/" + thumbnail} />
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,7 +46,9 @@ const { title, description, favicon, thumbnail } = Astro.props.frontmatter;
 
     <title>{title}</title>
   </head>
-  <body class="p-6 pt-12 flex flex-col gap-4 items-center max-w-[50rem] m-auto">
+  <body
+    class="flex flex-col gap-4 items-center pt-12 pb-6 w-full *:px-6 *:max-w-[60rem]"
+  >
     <slot />
     <footer class="m-auto">
       <p class="text-zinc-500 text-sm">
@@ -77,39 +84,22 @@ const { title, description, favicon, thumbnail } = Astro.props.frontmatter;
     @apply text-5xl text-center font-medium;
   }
   h2 {
-    @apply w-full text-3xl font-bold mt-4;
+    @apply w-full text-3xl font-bold;
+  }
+  h3 {
+    @apply w-full text-xl font-bold;
+  }
+  h4 {
+    @apply w-full font-bold;
+  }
+  table {
+    @apply border-y-2 border-black;
+  }
+  thead {
+    @apply border-b border-black;
+  }
+  th,
+  td {
+    @apply px-4;
   }
 </style>
-
-<!-- <script>
-  function copyCode(button: HTMLElement) {
-    const codeBlock = button.closest("pre");
-    if (!codeBlock) {
-      return;
-    }
-    const codeContent = codeBlock.querySelector("code")?.innerText;
-    if (!codeContent) {
-      return;
-    }
-    const successIcon = codeBlock.querySelector(
-      ".copy-code-successful"
-    ) as HTMLElement;
-    if (!successIcon) {
-      console.error("Failed to find success icon.");
-      return;
-    }
-    navigator.clipboard.writeText(codeContent).catch((err) => {
-      console.error("Failed to copy code: ", err);
-    });
-    button.style.display = "none";
-    successIcon.style.display = "inline";
-    setTimeout(() => {
-      button.style.display = "inline";
-      successIcon.style.display = "none";
-    }, 1000);
-  }
-
-  document.querySelectorAll(".copy-code").forEach((button) => {
-    button.addEventListener("click", () => copyCode(button as HTMLElement));
-  });
-</script> -->
