@@ -7,7 +7,8 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  trailingSlash: "never",
+  site: 'https://realfty.github.io',
+  base: '/academic-project-astro-test',
   integrations: [tailwind(), icon(), mdx(), react()],
   markdown: {
     shikiConfig: {
